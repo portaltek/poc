@@ -1,0 +1,11 @@
+rootProject.name = 'poc-api-gateway'
+include 'srv:gateway'
+include 'srv:profile'
+include 'srv:common'
+include 'srv:common-web'
+include 'srv:common-security'
+include 'srv:service1'
+include 'srv:service2'
+
+include 'test:component:gateway-component-test'
+
