@@ -1,0 +1,28 @@
+GET http://localhost:3000 
+###
+GET http://localhost:3000/users/
+###
+POST http://localhost:3000/users/
+content-type: application/json
+
+{
+    "firstName": "Johnny",
+    "lastName": "Doe",
+    "age": 10
+}
+###
+GET http://localhost:3000/users/bef03a14-622c-4b93-a283-0b269e4be59e
+###
+DELETE http://localhost:3000/users/bef03a14-622c-4b93-a283-0b269e4be59e
+###
+DELETE http://localhost:3000/users/7b4a4e55-170c-4809-9461-4a3fe96f53df
+###
+PATCH http://localhost:3000/users/bef03a14-622c-4b93-a283-0b269e4be59e
+content-type: application/json
+
+{
+    "firstName": "Johnny",
+    "lastName": "Doe",
+    "age": 11
+}
+###
