@@ -3,4 +3,4 @@
 **/.env/**
 **/docker-compose.yml
 **/mongo-init.js
-**/mongo-db/data/**
+**/mongo-db-data/**
