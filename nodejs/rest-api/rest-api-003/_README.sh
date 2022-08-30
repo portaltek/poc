@@ -1,10 +1,15 @@
-# rest-api-003 https://www.youtube.com/watch?v=1o9YOHeKhNQ
+# rest-api-003
+# https://www.youtube.com/watch?v=1o9YOHeKhNQ
+# https://www.youtube.com/watch?v=FXzsv2BJLKs
+# https://github.com/JasonMerrett/nodejs-api-from-scratch
 
+cd ~/_poc/nodejs/rest-api/rest-api-003
 npm init -y
 npm i bcrypt compression cors express dotenv envalid helmet joi jsonwebtoken module-alias mongoose morgan  
 npm i -D eslint prettier eslint-config-prettier eslint-plugin-prettier typescript tsc-watch 
 npm i -D @typescript-eslint/parser @typescript-eslint/eslint-plugin @types/node @types/cors \
-@types/express @types/compression @types/morgan @types/bcrypt
+@types/express @types/compression @types/morgan @types/bcrypt @types/jsonwebtoken
+npm i -D jest mongodb-memory-server
 
 npx tsc --init
 # "baseUrl": "./src", "outDir": "./dist", "paths": { "@/util/*": ["/util/*"], "@/resources/*": ["/resources/*"], "@/middleware/*": ["/middleware/*"] } ,
@@ -40,18 +45,29 @@ mkdir src/util src/middleware/ src/resources/
 to src/util/exceptions/ http.exception.ts
 to src/util/interfaces/ controller.interface.ts
 to src/util/ validateEnv.ts
+
 to src/middleware/ error.middleware.ts
 to src/middleware/ validation.middleware.ts
 
-# RESOURCES
+
+# POST
 to src/resources/post/ post.interface.ts
 to src/resources/post/ post.model.ts
 to src/resources/post/ post.validation.ts
 to src/resources/post/ post.service.ts
 to src/resources/post/ post.controller.ts
+# USER
+to src/resources/user/ user.interface.ts
+to src/resources/user/ user.model.ts
+to src/resources/user/ user.validation.ts
+to src/util/ token.ts
+to src/util/interfaces token.interface.ts
+to src/middleware/ authenticated.middleware.ts 
 
+to src/resources/user/ user.service.ts
 to src/resources/user/ user.controller.ts
 
+cd ~/_poc/nodejs/rest-api/rest-api-003
 
 to src/ app.ts; to src/ index.ts
 

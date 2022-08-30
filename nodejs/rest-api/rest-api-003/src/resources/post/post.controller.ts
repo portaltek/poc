@@ -6,15 +6,15 @@ import validate from '@/resources/post/post.validation';
 import PostService from '@/resources/post/post.service';
 
 class PostController implements Controller {
-    public path = '/posts';
+    public path = '/post';
     public router = Router();
     private PostService = new PostService();
 
     constructor() {
-        this.initialiseRoutes();
+        this.initRoutes();
     }
 
-    private initialiseRoutes(): void {
+    private initRoutes(): void {
         this.router.post(
             `${this.path}`,
             validationMiddleware(validate.create),

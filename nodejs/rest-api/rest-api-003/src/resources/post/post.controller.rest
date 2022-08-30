@@ -1,2 +1,2 @@
-GET http://localhost:3000/api/posts/ping
+GET http://localhost:3000/api/post/ping
 

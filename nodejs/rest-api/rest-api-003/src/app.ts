@@ -19,12 +19,10 @@ class App {
         this.initErrorHandling();
     }
     private initRepoConnection() {
-        console.log('initRepoConnection');
         const { MONGO_USERNAME, MONGO_PASSWORD, MONGO_PATH } = process.env;
         mongoose.connect(
             `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_PATH}`
         );
-        console.log('initRepoConnection complete');
     }
     private initMiddleware() {
         this.express.use(helmet());
