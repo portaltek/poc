@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express'
 // Util
-import HttpException, { getMessage } from '@/util/exceptions/http.exception'
+import HttpException from '@/util/exceptions/http.exception'
 import Controller from '@/util/interfaces/controller.interface'
 import validationMiddleware from '@/util/middleware/validation.middleware'
 // Resource
@@ -49,7 +49,7 @@ export default class UserController implements Controller {
 
             res.status(201).json({ token })
         } catch (error) {
-            next(new HttpException(400, getMessage(error)))
+            next(new HttpException(400, error))
         }
     }
 
@@ -65,7 +65,7 @@ export default class UserController implements Controller {
 
             res.status(200).json({ token })
         } catch (error) {
-            next(new HttpException(400, getMessage(error)))
+            next(new HttpException(400, error))
         }
     }
 

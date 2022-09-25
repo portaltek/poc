@@ -6,11 +6,12 @@
   "scripts": {
     "build": "rm -rf dist/* && tsc",
     "install": "npm run build",
-    "dev": "npm install && tsc-watch --onSuccess \"node dist/app/index.js\" && exit 1",
+    "dev": "npm install && tsc-watch --onSuccess \"node dist/index.js\" && exit 1",
+    "test": "jest src/* --bail --silent ",
     "testw": "jest src/* --watch",
     "testw2": "jest src/* --watch --bail --coverage --verbose --silent",
     "test-api": "jest test/* --watch  --bail --silent",
-    "start": "node dist/app/index.js"
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -37,10 +38,11 @@
     "@types/jest": "^29.0.3",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/morgan": "^1.9.3",
-    "@types/node": "^18.7.20",
+    "@types/node": "^18.7.21",
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.38.0",
     "@typescript-eslint/parser": "^5.38.0",
+    "axios": "^0.27.2",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",

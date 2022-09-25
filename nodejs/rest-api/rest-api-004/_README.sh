@@ -8,11 +8,9 @@ npm init -y
 npm i bcrypt compression cors express dotenv envalid helmet joi jsonwebtoken module-alias \
 mongoose morgan  
 npm i -D eslint prettier eslint-config-prettier eslint-plugin-prettier typescript tsc-watch \
-jest ts-jest ts-node supertest
+jest ts-jest ts-node axios
 npm i -D @typescript-eslint/parser @typescript-eslint/eslint-plugin @types/node @types/cors \
-@types/express @types/compression @types/morgan @types/bcrypt @types/jsonwebtoken @types/jest \
-@types/supertest 
-
+@types/express @types/compression @types/morgan @types/bcrypt @types/jsonwebtoken @types/jest 
 
 npx tsc --init
 

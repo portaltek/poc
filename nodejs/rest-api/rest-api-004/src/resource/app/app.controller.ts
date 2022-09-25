@@ -13,10 +13,10 @@ export default class AppController implements Controller {
     }
 
     private initRoutes(): void {
-        this.router.get(`${this.path}/health`, this.register)
+        this.router.get(`${this.path}/health`, this.health)
     }
 
-    private register = async (
+    private health = async (
         req: Request,
         res: Response,
         next: NextFunction

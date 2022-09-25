@@ -18,32 +18,29 @@ export function initMongoRepo() {
 }
 
 export function initNoRepo() {
-    console.log('initNoRepo')
+    // console.log('initNoRepo')
 }
 export default class App {
     public express: Application
     public port: number
     public appname: string
+    public urlBase: string = ''
     constructor(
         appname: string,
         controllers: Controller[],
+        urlBase: string,
         port: number,
         initRepo: Function
     ) {
         this.appname = appname
         this.express = express()
+        this.urlBase = urlBase
         this.port = port
         initRepo()
         this.initMiddleware()
         this.initControllers(controllers)
         this.initErrorHandling()
     }
-    // private initRepoConnection() {
-    //     const { MONGO_USERNAME, MONGO_PASSWORD, MONGO_PATH } = process.env
-    //     mongoose.connect(
-    //         `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_PATH}`
-    //     )
-    // }
     private initMiddleware() {
         this.express.use(helmet())
         this.express.use(cors())
@@ -54,15 +51,22 @@ export default class App {
     }
     private initControllers(controllers: Controller[]) {
         controllers.forEach((controller: Controller) => {
-            this.express.use('/api', controller.router)
+            this.express.use(this.urlBase, controller.router)
         })
     }
     private initErrorHandling() {
         this.express.use(ErrorMiddleware)
     }
     public listen(): Server {
+        const ip = this.getIP()
         return this.express.listen(this.port, () => {
-            console.log(`${this.appname} listening on port ${this.port}`)
+            console.log(
+                `${this.appname} started at ${ip}:${this.port}${this.urlBase}`
+            )
         })
+    }
+    public getIP() {
+        const ip = require('ip')
+        return ip.address() as string
     }
 }

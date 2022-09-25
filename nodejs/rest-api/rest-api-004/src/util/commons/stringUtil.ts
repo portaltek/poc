@@ -7,3 +7,7 @@ export const is = (text1: string | undefined, text2?: string): boolean => {
 export const isNot = (text1: string | undefined, text2?: string): boolean => {
     return !is(text1, text2)
 }
+
+export const isString = (data: any): data is string => {
+    return typeof data === 'string'
+}

@@ -1,7 +1,7 @@
 // Util
 import { createToken } from '@/util/jwt/tokenUtil'
 import { getMessage } from '@/util/exceptions/http.exception'
-import { isValidPassword, encryptPassword } from '@/util/auth/authUtil'
+import { isValidPassword } from '@/util/auth/authUtil'
 // Resource
 import User from '@/resource/user/spi/repo/user.repo.interface'
 import UserModel from '@/resource/user/spi/repo/user.repo.model'
