@@ -1,6 +1,9 @@
 **/node_modules/**
 **/dist/**
 **/.env/**
+**/mongo-db-data/**
+**/coverage/**
+
+
 **/docker-compose.yml
 **/mongo-init.js
-**/mongo-db-data/**

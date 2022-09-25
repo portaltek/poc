@@ -1,3 +1,4 @@
+import { Server } from 'http'
 import express, { Application } from 'express'
 import mongoose from 'mongoose'
 import compression from 'compression'
@@ -5,26 +6,44 @@ import cors from 'cors'
 import morgan from 'morgan'
 import helmet from 'helmet'
 // Util
+import { ENV } from '@/util/env/envUtil'
 import Controller from '@/util/interfaces/controller.interface'
 import ErrorMiddleware from '@/util/middleware/error.middleware'
 
+export function initMongoRepo() {
+    const { MONGO_USERNAME, MONGO_PASSWORD, MONGO_PATH } = ENV
+    mongoose.connect(
+        `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_PATH}`
+    )
+}
+
+export function initNoRepo() {
+    console.log('initNoRepo')
+}
 export default class App {
     public express: Application
     public port: number
-    constructor(controllers: Controller[], port: number) {
+    public appname: string
+    constructor(
+        appname: string,
+        controllers: Controller[],
+        port: number,
+        initRepo: Function
+    ) {
+        this.appname = appname
         this.express = express()
         this.port = port
-        this.initRepoConnection()
+        initRepo()
         this.initMiddleware()
         this.initControllers(controllers)
         this.initErrorHandling()
     }
-    private initRepoConnection() {
-        const { MONGO_USERNAME, MONGO_PASSWORD, MONGO_PATH } = process.env
-        mongoose.connect(
-            `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_PATH}`
-        )
-    }
+    // private initRepoConnection() {
+    //     const { MONGO_USERNAME, MONGO_PASSWORD, MONGO_PATH } = process.env
+    //     mongoose.connect(
+    //         `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_PATH}`
+    //     )
+    // }
     private initMiddleware() {
         this.express.use(helmet())
         this.express.use(cors())
@@ -41,9 +60,9 @@ export default class App {
     private initErrorHandling() {
         this.express.use(ErrorMiddleware)
     }
-    public listen() {
-        this.express.listen(this.port, () => {
-            console.log(`App listening on port ${this.port}`)
+    public listen(): Server {
+        return this.express.listen(this.port, () => {
+            console.log(`${this.appname} listening on port ${this.port}`)
         })
     }
 }

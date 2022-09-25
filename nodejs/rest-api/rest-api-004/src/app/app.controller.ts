@@ -2,7 +2,6 @@ import { Router, Request, Response, NextFunction } from 'express'
 // Util
 import HttpException, { getMessage } from '@/util/exceptions/http.exception'
 import Controller from '@/util/interfaces/controller.interface'
-
 // Resource
 
 export default class AppController implements Controller {

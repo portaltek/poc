@@ -1,16 +1,37 @@
-import 'dotenv/config'
 import 'module-alias/register'
-import validateEnv from '@/util/env/validateEnv'
+import { Server } from 'http'
+// Util
+import { validateEnv, ENV } from '@/util/env/envUtil'
+import { isNot } from '@/util/commons/stringUtil'
+// Resource
 import UserController from '@/resource/user/api/user.controller'
 import AppController from '@/app/app.controller'
-import App from '@/app//app'
+import App, { initNoRepo, initMongoRepo } from '@/app/app'
+import TestClientController from '@/test-client/init/api/test-client.controller'
 
 validateEnv()
+export const appServer = startAppServer()
+export const appClient = startAppClient()
 
-const controllers = [new AppController(), new UserController()]
+function startAppServer(): Server | undefined {
+    const controllers = [new AppController(), new UserController()]
+    const appServer = new App(
+        'MyServer',
+        controllers,
+        Number(ENV.SERVER_PORT),
+        initMongoRepo
+    )
+    return appServer.listen()
+}
 
-const app = new App(controllers, Number(process.env.SERVER_PORT))
+function startAppClient(): Server | undefined {
+    if (isNot(ENV.TEST_CLIENT_ENABLE)) return
 
-app.listen()
-
-export default app
+    const appClient = new App(
+        'MyTestClient',
+        [new TestClientController()],
+        Number(ENV.TEST_CLIENT_PORT),
+        initNoRepo
+    )
+    return appClient.listen()
+}
