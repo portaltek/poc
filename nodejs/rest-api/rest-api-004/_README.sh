@@ -6,9 +6,9 @@
 # DEPENDENCIES
 npm init -y
 npm i bcrypt compression cors express dotenv envalid helmet joi jsonwebtoken module-alias \
-mongoose morgan winston
-npm i -D eslint prettier eslint-config-prettier eslint-plugin-prettier typescript tsc-watch \
-jest ts-jest ts-node axios
+mongoose morgan winston tslog ts-node ts-node-dev axios jest ts-jest 
+npm i -D eslint prettier eslint-config-prettier eslint-plugin-prettier typescript tsc-watch 
+
 npm i -D @typescript-eslint/parser @typescript-eslint/eslint-plugin @types/node @types/cors \
 @types/express @types/compression @types/morgan @types/bcrypt @types/jsonwebtoken @types/jest 
 
@@ -41,10 +41,10 @@ touch .env .env.sample
 # JWT_SECRET=my_jwt_secret
 
 touch jest.config.js
-mkdir src src/util src/resource/ _infra _infra/local _infra/local/mongo-db
+mkdir src src/util src/resource/ setup setup/local setup/local/mongo-db
 
 
-cd _infra/local/mongo-db
+cd setup/local/mongo-db
 docker-compose down # Just in case its running already.
 docker-compose up
 

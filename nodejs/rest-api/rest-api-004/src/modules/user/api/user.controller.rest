@@ -8,7 +8,7 @@ Content-Type: application/json
     "username": "username"  ,
     "roles":["ADMIN", "USER"]  
 }
-###
+### WRONG CREDENTIALS
 POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
@@ -16,7 +16,7 @@ Content-Type: application/json
     "email": "test@test.com", 
     "password": "password12311"
 }
-###
+### LOGIN GOOD CREDENTIALS
 POST http://localhost:3000/api/user/login
 Content-Type: application/json
 

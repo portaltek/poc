@@ -1,4 +1,5 @@
 // Util
+import { log } from '@/util/log/logConfig'
 import { createToken } from '@/util/jwt/tokenUtil'
 import { AppError } from '@/util/exceptions/http.exception'
 import { isValidPassword } from '@/util/auth/authUtil'
@@ -34,6 +35,7 @@ export default class UserService {
         if (await isValidPassword(password, user.password)) {
             return createToken(user, process.env.JWT_EXPIRES_IN)
         }
+        log.error('Wrong credentials')
         throw new AppError('Wrong credentials')
     }
 

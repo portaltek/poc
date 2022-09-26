@@ -1,44 +1,16 @@
-import { ENV } from '@/util/env/envUtil'
-const winston = require('winston')
+import morgan from 'morgan'
+import { logWithWinston } from './logWithWinston'
+import { logWithTsLog } from './logWithTsLog'
 
-const { combine, timestamp, json, cli, printf, colorize, align, errors } =
-    winston.format
-const { Console, File } = winston.transports
+export const logBkup = logWithWinston
 
-const LOG_DATE_FORMAT = {
-    format: ENV.LOG_DATETIME_FORMAT,
-}
-const LOG_MSG_FORMAT = (i: any) => `${i.timestamp}|${i.level}|${i.message}`
+export const log = logWithTsLog
 
-const logConsole = () => {
-    return new Console({
-        format: combine(
-            colorize({ all: true }),
-            align(),
-            errors({ stack: true }),
-            printf(LOG_MSG_FORMAT)
-        ),
-    })
-}
-
-const logFile = (file: string) => {
-    return new File({
-        filename: `${ENV.LOG_FOLDER}/${file}`,
-        format: combine(printf(LOG_MSG_FORMAT)),
-    })
-}
-
-const logJsonFile = (file: string) => {
-    return new File({
-        filename: `${ENV.LOG_FOLDER}/${file}`,
-        format: combine(errors({ stack: true }), timestamp(), json()),
-    })
-}
-
-export const log = winston.createLogger({
-    level: ENV.LOG_LEVEL,
-    format: combine(timestamp(LOG_DATE_FORMAT)),
-    transports: [logConsole(), logJsonFile('app.json'), logFile('app.log')],
-    exceptionHandlers: [logFile('exception.log')],
-    rejectionHandlers: [logFile('rejections.log')],
-})
+export const restLog = morgan(
+    ':status|:method :url|:res[content-length]|:response-time',
+    {
+        stream: {
+            write: (msg) => log.info(msg.trim()),
+        },
+    }
+)

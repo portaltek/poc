@@ -1,7 +1,7 @@
 import { isString } from '@/util/commons/stringUtil'
 import { log } from '@/util/log/logConfig'
 
-export function hasMessage(e: any): e is { message: string } {
+export function hasMessage(e: any): boolean {
     return e && typeof e.message == 'string'
 }
 
@@ -10,23 +10,28 @@ export function getMessage(error: any | string) {
     return hasMessage(error) ? error.message : 'no error message found'
 }
 
-export default class HttpException extends Error {
-    public status: number
-    public message: string
+export function isError(e: any): boolean {
+    return e instanceof Error
+}
 
-    constructor(status: number, error: string | any) {
-        super(getMessage(error))
-        this.status = status
-        this.message = getMessage(error)
-        log.error(this.message)
-    }
+export function logErrorStack(error: any) {
+    if (!isError(error)) return
+    const e = error as Error
+    log.trace(`STACK: ${e.stack}`)
 }
 
 export class AppError extends Error {
-    public message: string
     constructor(error: string | any) {
         super(getMessage(error))
-        this.message = getMessage(error)
-        log.error(this.message)
+        log.trace(`MSG: ${this.message}`)
+        logErrorStack(error)
+    }
+}
+export default class HttpException extends AppError {
+    public status: number
+
+    constructor(status: number, error: string | any) {
+        super(error)
+        this.status = status
     }
 }
