@@ -9,10 +9,9 @@ module.exports = {
     moduleFileExtensions: ['ts', 'tsx', 'js'],
     moduleNameMapper: {
         '@/(.*)': '<rootDir>/src/$1',
-        // database: '<rootDir>/src/lib/database',
     },
 
-    testRegex: '(/tests/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
+    testRegex: '(/tests/*.spec.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
     transform: {
         '^.+\\.(ts|tsx)$': [
             'ts-jest',

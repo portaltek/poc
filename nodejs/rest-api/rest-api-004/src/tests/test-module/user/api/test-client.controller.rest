@@ -1,0 +1,5 @@
+### CALL CLIENT APP TO TEST SERVER API
+### 
+GET http://localhost:3001/test/test-module/user/
+### 
+GET http://localhost:3001/test/test-module/user/start

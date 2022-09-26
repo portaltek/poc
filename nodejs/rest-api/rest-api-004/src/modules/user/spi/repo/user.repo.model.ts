@@ -1,13 +1,9 @@
 import { Schema, model } from 'mongoose'
 import { encryptPassword } from '@/util/auth/authUtil'
-import User from '@/resource/user/spi/repo/user.repo.interface'
+import User from '@/modules/user/spi/repo/user.repo.interface'
 
 const UserSchema = new Schema(
     {
-        name: {
-            type: String,
-            required: true,
-        },
         email: {
             type: String,
             required: true,
@@ -17,8 +13,16 @@ const UserSchema = new Schema(
         password: {
             type: String,
         },
-        role: {
+        username: {
             type: String,
+            required: true,
+        },
+        roles: {
+            type: [
+                {
+                    type: String,
+                },
+            ],
             required: true,
         },
     },

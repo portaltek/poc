@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "setup:lol": "sh _infra/local/setup.sh ",
+    "clean": "rm -rf dist/* && rm -rf node_modules/* ",
     "build": "rm -rf dist/* && tsc",
     "install": "npm run build",
-    "dev": "npm install && tsc-watch --onSuccess \"node dist/index.js\" && exit 1",
     "test": "jest src/* --bail --silent ",
-    "testw": "jest src/* --watch",
-    "testw2": "jest src/* --watch --bail --coverage --verbose --silent",
-    "test-api": "jest test/* --watch  --bail --silent",
-    "start": "node dist/index.js"
+    "test:lol": "jest src/* --watch",
+    "start": "node dist/index.js",
+    "start:lol": "npm install && tsc-watch --onSuccess \"node dist/index.js\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -24,11 +24,12 @@
     "envalid": "^7.3.1",
     "express": "^4.18.1",
     "helmet": "^6.0.0",
-    "joi": "^17.6.0",
+    "joi": "^17.6.1",
     "jsonwebtoken": "^8.5.1",
     "module-alias": "^2.2.2",
     "mongoose": "^6.6.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "winston": "^3.8.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

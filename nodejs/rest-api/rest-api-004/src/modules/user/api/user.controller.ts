@@ -4,9 +4,9 @@ import HttpException from '@/util/exceptions/http.exception'
 import Controller from '@/util/interfaces/controller.interface'
 import validationMiddleware from '@/util/middleware/validation.middleware'
 // Resource
-import validate from '@/resource/user/api/user.validation'
-import UserService from '@/resource/user/core/user.serv'
-import authService from '@/resource/user/core/auth.serv'
+import validate from '@/modules/user/api/user.validation'
+import UserService from '@/modules/user/core/user.serv'
+import authService from '@/modules/user/core/auth.serv'
 
 export default class UserController implements Controller {
     public path = '/user'
@@ -19,9 +19,9 @@ export default class UserController implements Controller {
 
     private initRoutes(): void {
         this.router.post(
-            `${this.path}/register`,
-            validationMiddleware(validate.register),
-            this.register
+            `${this.path}/create`,
+            validationMiddleware(validate.create),
+            this.create
         )
         this.router.post(
             `${this.path}/login`,
@@ -32,19 +32,19 @@ export default class UserController implements Controller {
         this.router.get(`${this.path}/findAll`, authService, this.getUserList)
     }
 
-    private register = async (
+    private create = async (
         req: Request,
         res: Response,
         next: NextFunction
     ): Promise<Response | void> => {
         try {
-            const { name, email, password } = req.body
+            const { username, email, password, roles } = req.body
 
-            const token = await this.UserService.register(
-                name,
+            const token = await this.UserService.create(
                 email,
                 password,
-                'user'
+                username,
+                roles
             )
 
             res.status(201).json({ token })

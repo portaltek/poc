@@ -1,4 +1,0 @@
-### CALL CLIENT APP TO TEST SERVER API
-GET http://localhost:3001/test-client/init
-### 
-GET http://localhost:3001/test-client/init/start

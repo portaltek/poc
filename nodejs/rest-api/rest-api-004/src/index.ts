@@ -4,10 +4,19 @@ import { Server } from 'http'
 import { validateEnv, ENV } from '@/util/env/envUtil'
 import { isNot } from '@/util/commons/stringUtil'
 // Resource
-import UserController from '@/resource/user/api/user.controller'
-import AppController from '@/resource/app/app.controller'
-import App, { initNoRepo, initMongoRepo } from '@/resource/app/app'
-import TestClientController from '@/test-client/init/api/test-client.controller'
+import UserController from '@/modules/user/api/user.controller'
+import AppController from '@/modules/app/app.controller'
+import App, { initNoRepo, initMongoRepo } from '@/modules/app/app'
+import TestClientController from '@/tests/test-module/user/api/test-client.controller'
+import { log } from '@/util/log/logConfig'
+
+log.info('==============================================')
+log.debug('Debug message')
+log.info('Info message')
+log.warn('Warn message')
+log.error('Error message')
+log.error(new Error('an error'))
+// throw new Error('An uncaught error')
 
 validateEnv()
 export const appServer = startAppServer()

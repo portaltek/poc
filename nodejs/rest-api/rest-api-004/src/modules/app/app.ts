@@ -7,6 +7,7 @@ import morgan from 'morgan'
 import helmet from 'helmet'
 // Util
 import { ENV } from '@/util/env/envUtil'
+import { log } from '@/util/log/logConfig'
 import Controller from '@/util/interfaces/controller.interface'
 import ErrorMiddleware from '@/util/middleware/error.middleware'
 
@@ -58,15 +59,10 @@ export default class App {
         this.express.use(ErrorMiddleware)
     }
     public listen(): Server {
-        const ip = this.getIP()
         return this.express.listen(this.port, () => {
-            console.log(
-                `${this.appname} started at ${ip}:${this.port}${this.urlBase}`
+            log.info(
+                `${this.appname}:${this.port}${this.urlBase} started with ENV:${ENV.SERVER_ENV}`
             )
         })
-    }
-    public getIP() {
-        const ip = require('ip')
-        return ip.address() as string
     }
 }

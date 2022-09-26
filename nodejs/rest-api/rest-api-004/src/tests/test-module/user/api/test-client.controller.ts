@@ -1,12 +1,12 @@
 import { Router, Request, Response, NextFunction } from 'express'
 // Util
 import Controller from '@/util/interfaces/controller.interface'
-import HttpException, { getMessage } from '@/util/exceptions/http.exception'
+import HttpException from '@/util/exceptions/http.exception'
+import TestClientService from '@/tests/test-module/user/core/test-client.serv'
 // Resource
-import TestClientService from '@/test-client/init/core/test-client.serv'
 
 export default class TestClientController implements Controller {
-    public path = '/init'
+    public path = '/test-module/user'
     public router = Router()
     private testClientService = new TestClientService()
 
@@ -35,9 +35,13 @@ export default class TestClientController implements Controller {
         try {
             const result = await this.testClientService.start()
 
-            res.status(200).json({ uri: 'test-api/init/start', result: result })
+            res.status(200).json({
+                uri: 'test-api/init/start',
+                status: 'OK',
+                result: result,
+            })
         } catch (error) {
-            next(new HttpException(400, getMessage(error)))
+            next(new HttpException(400, error))
         }
     }
 }

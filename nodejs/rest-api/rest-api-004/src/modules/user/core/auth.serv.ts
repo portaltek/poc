@@ -6,21 +6,15 @@ import { verifyToken } from '@/util/jwt/tokenUtil'
 import Token from '@/util/interfaces/token.interface'
 import HttpException from '@/util/exceptions/http.exception'
 // Resource
-import UserModel from '@/resource/user/spi/repo/user.repo.model'
+import UserModel from '@/modules/user/spi/repo/user.repo.model'
 
 export default async function authService(
     req: Request,
     _res: Response,
     next: NextFunction
 ): Promise<Response | void> {
-    const bearer = req.headers.authorization
-
-    if (!bearer || !bearer.startsWith('Bearer '))
-        return next(new HttpException(401, 'Unauthorized'))
-
-    const accessToken = bearer.split('Bearer ')[1].trim()
-
     try {
+        const accessToken = getAccessToken(req) as string
         const jwtDecoded: Token | jwt.JsonWebTokenError = await verifyToken(
             accessToken
         )
@@ -43,4 +37,14 @@ export default async function authService(
     } catch (error) {
         return next(new HttpException(401, 'Unauthorized'))
     }
+}
+
+export function getAccessToken(req: Request): string | HttpException {
+    const bearer = req.headers.authorization
+
+    if (!bearer || !bearer.startsWith('Bearer '))
+        throw new HttpException(401, 'Unauthorized')
+
+    const accessToken = bearer.split('Bearer ')[1].trim()
+    return accessToken
 }

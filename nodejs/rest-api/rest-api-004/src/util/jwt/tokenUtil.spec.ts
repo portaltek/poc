@@ -6,7 +6,7 @@ import Token from '@/util/interfaces/token.interface'
 const user = {
     id: 'user.id',
     username: 'user.username',
-    roles: ['ROLE_1', 'ROLE_2'],
+    roles: ['ADMIN', 'USER'],
 }
 const validJwt = createToken(user)
 const invalidJwt =
