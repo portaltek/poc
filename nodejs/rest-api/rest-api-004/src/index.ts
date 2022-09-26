@@ -9,14 +9,15 @@ import AppController from '@/modules/app/app.controller'
 import App, { initNoRepo, initMongoRepo } from '@/modules/app/app'
 import TestClientController from '@/tests/test-module/user/api/test-client.controller'
 import { log } from '@/util/log/logConfig'
+import { AppError } from '@/util/exceptions/http.exception'
 
 log.info('==============================================')
-log.debug('Debug message')
-log.info('Info message')
-log.warn('Warn message')
-log.error('Error message')
-log.error(new Error('an error'))
-// throw new Error('An uncaught error')
+log.info('==============================================')
+log.debug('I am a debug log.')
+log.info('I am an info log.')
+log.warn('I am a warn log with a json object:')
+log.error('I am an error log.')
+const e = new AppError('Error message ')
 
 validateEnv()
 export const appServer = startAppServer()

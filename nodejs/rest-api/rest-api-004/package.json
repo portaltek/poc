@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "setup:lol": "sh _infra/local/setup.sh ",
+    "setup:lol": "sh setup/local/setup.sh ",
     "clean": "rm -rf dist/* && rm -rf node_modules/* ",
     "build": "rm -rf dist/* && tsc",
     "install": "npm run build",
@@ -27,8 +27,9 @@
     "joi": "^17.6.1",
     "jsonwebtoken": "^8.5.1",
     "module-alias": "^2.2.2",
-    "mongoose": "^6.6.1",
+    "mongoose": "^6.6.2",
     "morgan": "^1.10.0",
+    "tslog": "^3.3.4",
     "winston": "^3.8.2"
   },
   "devDependencies": {

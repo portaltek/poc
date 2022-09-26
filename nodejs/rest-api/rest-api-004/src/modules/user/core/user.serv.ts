@@ -1,4 +1,5 @@
 // Util
+import { log } from '@/util/log/logConfig'
 import { createToken } from '@/util/jwt/tokenUtil'
 import { AppError } from '@/util/exceptions/http.exception'
 import { isValidPassword } from '@/util/auth/authUtil'

@@ -3,11 +3,10 @@ import express, { Application } from 'express'
 import mongoose from 'mongoose'
 import compression from 'compression'
 import cors from 'cors'
-import morgan from 'morgan'
 import helmet from 'helmet'
 // Util
 import { ENV } from '@/util/env/envUtil'
-import { log } from '@/util/log/logConfig'
+import { log, restLog } from '@/util/log/logConfig'
 import Controller from '@/util/interfaces/controller.interface'
 import ErrorMiddleware from '@/util/middleware/error.middleware'
 
@@ -45,7 +44,7 @@ export default class App {
     private initMiddleware() {
         this.express.use(helmet())
         this.express.use(cors())
-        this.express.use(morgan('dev'))
+        this.express.use(restLog)
         this.express.use(express.json())
         this.express.use(express.urlencoded({ extended: false }))
         this.express.use(compression())
