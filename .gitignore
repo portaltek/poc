@@ -1,9 +1,11 @@
 **/node_modules/**
 **/dist/**
 **/.env/**
+**/*.env
 **/mongo-db-data/**
 **/coverage/**
 
 
 **/docker-compose.yml
-**/mongo-init.js
+**/mongo-init.js 
+nodejs/rest-api/rest-api-004/.env
