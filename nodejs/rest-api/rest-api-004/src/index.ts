@@ -12,7 +12,6 @@ import { log } from '@/util/log/logConfig'
 import { AppError } from '@/util/exceptions/http.exception'
 
 log.info('==============================================')
-log.info('==============================================')
 log.debug('I am a debug log.')
 log.info('I am an info log.')
 log.warn('I am a warn log with a json object:')

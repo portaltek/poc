@@ -6,9 +6,15 @@
 # DEPENDENCIES
 npm init -y
 npm i bcrypt compression cors express dotenv envalid helmet joi jsonwebtoken module-alias \
+<<<<<<< HEAD
 mongoose morgan winston tslog
 npm i -D eslint prettier eslint-config-prettier eslint-plugin-prettier typescript tsc-watch \
 jest ts-jest ts-node axios
+=======
+mongoose morgan winston tslog ts-node ts-node-dev axios jest ts-jest 
+npm i -D eslint prettier eslint-config-prettier eslint-plugin-prettier typescript tsc-watch 
+
+>>>>>>> branch-fix
 npm i -D @typescript-eslint/parser @typescript-eslint/eslint-plugin @types/node @types/cors \
 @types/express @types/compression @types/morgan @types/bcrypt @types/jsonwebtoken @types/jest 
 

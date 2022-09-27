@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "setup:lol": "sh setup/local/setup.sh ",
+    "setup": "sh setup/local/setup.sh ",
     "clean": "rm -rf dist/* && rm -rf node_modules/* ",
     "build": "rm -rf dist/* && tsc",
     "install": "npm run build",
-    "test": "jest src/* --bail --silent ",
-    "test:lol": "jest src/* --watch",
-    "start": "node dist/index.js",
-    "start:lol": "npm install && tsc-watch --onSuccess \"node dist/index.js\" && exit 1"
+    "test": "jest src/* --bail --watch",
+    "test:prd": "jest src/* --bail --silent ",
+    "watch": "npx ts-node-dev --transpile-only src/index.ts --respawn ",
+    "watch:prd": "npm install && tsc-watch --onSuccess \"node dist/index.js\"",
+    "start1:prd": "node dist/index.js",
+    "start2:prd": "npx ts-node --transpile-only src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -58,6 +60,6 @@
     "typescript": "^4.8.3"
   },
   "_moduleAliases": {
-    "@": "dist"
+    "@": "src"
   }
 }

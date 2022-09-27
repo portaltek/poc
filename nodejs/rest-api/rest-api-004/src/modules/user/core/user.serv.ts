@@ -35,6 +35,7 @@ export default class UserService {
         if (await isValidPassword(password, user.password)) {
             return createToken(user, process.env.JWT_EXPIRES_IN)
         }
+        log.error('Wrong credentials')
         throw new AppError('Wrong credentials')
     }
 

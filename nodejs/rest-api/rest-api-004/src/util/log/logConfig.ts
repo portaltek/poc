@@ -1,10 +1,10 @@
 import morgan from 'morgan'
 import { logWithWinston } from './logWithWinston'
-import { Logger } from 'tslog'
+import { logWithTsLog } from './logWithTsLog'
 
 export const logBkup = logWithWinston
-export const log: Logger = new Logger()
 
+export const log = logWithTsLog
 export const restLog = morgan(
     ':status|:method :url|:res[content-length]|:response-time',
     {

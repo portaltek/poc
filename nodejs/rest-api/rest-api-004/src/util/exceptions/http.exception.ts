@@ -17,13 +17,13 @@ export function isError(e: any): boolean {
 export function logErrorStack(error: any) {
     if (!isError(error)) return
     const e = error as Error
-    log.error(`STACK: ${e.stack}`)
+    log.trace(`STACK: ${e.stack}`)
 }
 
 export class AppError extends Error {
     constructor(error: string | any) {
         super(getMessage(error))
-        log.error(`MSG: ${this.message}`)
+        log.trace(`MSG: ${this.message}`)
         logErrorStack(error)
     }
 }
