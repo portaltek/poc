@@ -15,8 +15,13 @@ log.info('==============================================')
 log.debug('I am a debug log.')
 log.info('I am an info log.')
 log.warn('I am a warn log with a json object:')
-log.error('I am an error log.')
-const e = new AppError('Error message ')
+log.error('I am a simple error log.')
+
+try {
+    throw new Error('Error at new AppError(Error message ) ')
+} catch (error) {
+    const e = new AppError(error)
+}
 
 validateEnv()
 export const appServer = startAppServer()

@@ -15,23 +15,28 @@ export function isError(e: any): boolean {
 }
 
 export function logErrorStack(error: any) {
+    if (hasMessage(error)) {
+        log.error(`MSG: ${getMessage(error)}`)
+    }
+
     if (!isError(error)) return
+
     const e = error as Error
-    log.trace(`STACK: ${e.stack}`)
+    log.error(`STACK: ${e.stack}`)
 }
 
 export class AppError extends Error {
     constructor(error: string | any) {
         super(getMessage(error))
-        log.trace(`MSG: ${this.message}`)
         logErrorStack(error)
     }
 }
-export default class HttpException extends AppError {
+export default class HttpException extends Error {
     public status: number
 
     constructor(status: number, error: string | any) {
         super(error)
         this.status = status
+        logErrorStack(error)
     }
 }

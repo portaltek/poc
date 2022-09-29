@@ -1,5 +1,5 @@
 import { Server } from 'http'
-import express, { Application } from 'express'
+import express, { Application, Request, Response, NextFunction } from 'express'
 import mongoose from 'mongoose'
 import compression from 'compression'
 import cors from 'cors'
@@ -9,6 +9,7 @@ import { ENV } from '@/util/env/envUtil'
 import { log, restLog } from '@/util/log/logConfig'
 import Controller from '@/util/interfaces/controller.interface'
 import ErrorMiddleware from '@/util/middleware/error.middleware'
+import { createTraceID } from '@/util/log/traceID'
 
 export function initMongoRepo() {
     const { MONGO_USERNAME, MONGO_PASSWORD, MONGO_PATH } = ENV
@@ -20,6 +21,7 @@ export function initMongoRepo() {
 export function initNoRepo() {
     // console.log('initNoRepo')
 }
+
 export default class App {
     public express: Application
     public port: number
@@ -41,9 +43,11 @@ export default class App {
         this.initControllers(controllers)
         this.initErrorHandling()
     }
+
     private initMiddleware() {
         this.express.use(helmet())
         this.express.use(cors())
+        this.express.use(createTraceID)
         this.express.use(restLog)
         this.express.use(express.json())
         this.express.use(express.urlencoded({ extended: false }))

@@ -33,9 +33,10 @@ export default class UserService {
         const user = (await this.findUserByEmail(email)) as User
 
         if (await isValidPassword(password, user.password)) {
+            log.info(`Logged User ${user.email}`)
             return createToken(user, process.env.JWT_EXPIRES_IN)
         }
-        log.error('Wrong credentials')
+
         throw new AppError('Wrong credentials')
     }
 

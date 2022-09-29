@@ -13,16 +13,18 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-    "email": "test@test.com", 
+    "email": "test@test.com",  
     "password": "password12311"
 }
 ### LOGIN GOOD CREDENTIALS
 POST http://localhost:3000/api/user/login
+my-app-trace-id: 1234
 Content-Type: application/json
 
 {
     "email": "admin@test.com", 
-    "password": "password123"
+    "password": "password123"    
+
 }
 ###
 GET http://localhost:3000/api/user/
