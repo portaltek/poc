@@ -5,19 +5,20 @@
   "main": "index.js",
   "scripts": {
     "setup": "sh setup/local/setup.sh ",
-    "clean": "rm -rf dist/* && rm -rf node_modules/* ",
     "build": "rm -rf dist/* && tsc",
     "install": "npm run build",
-    "test": "jest src/* --bail --watch",
-    "test:prd": "jest src/* --bail --silent ",
-    "watch": "npm install && tsc-watch --onSuccess \"node dist/index.js\"",
-    "watch:prd": "npm install && tsc-watch --onSuccess \"node dist/index.js\"",
-    "start:prd": "node dist/index.js"
+    "test": "jest src/* --bail --watch --silent",
+    "watch": "npm install && tsc-watch --onSuccess \"node -r ./src/util/log/trace.js dist/index.js\"",
+    "hello": "npm install && node -r ./src/util/log/trace.js dist/hello.js",
+    "start": " node -r ./src/util/log/trace.js dist/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@opentelemetry/api": "^1.2.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.33.1",
+    "@opentelemetry/sdk-node": "^0.33.0",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "compression": "^1.7.4",

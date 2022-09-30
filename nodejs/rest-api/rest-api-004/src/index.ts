@@ -21,6 +21,7 @@ try {
     throw new Error('Error at new AppError(Error message ) ')
 } catch (error) {
     const e = new AppError(error)
+    log.error('error', { err: e })
 }
 
 validateEnv()

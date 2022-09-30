@@ -3,10 +3,11 @@
 GET http://localhost:3000/api/user/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7Im5hbWUiOiJzYW1wbGUgdXNlcm5hbWUiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6IiIsInJvbGUiOiJ1c2VyIiwiX2lkIjoiNjMyZmFjM2Q1ZjcwODFjNGNiMmI0MWJkIiwiY3JlYXRlZEF0IjoiMjAyMi0wOS0yNVQwMToxNzo0OS40MzBaIiwidXBkYXRlZEF0IjoiMjAyMi0wOS0yNVQwMToxNzo0OS40MzBaIiwiX192IjowfSwiaWF0IjoxNjY0MDY4NjY5LCJleHAiOjE2NjQxNTUwNjl9.sOkeVjb3_611h7zfvtiVhkwUZYSaM0At7QfagLr5ulY
 
-############################################################
-###
-GET http://localhost:3001/test/test-module/user/start
 
+############################################################
+GET http://localhost:3000/api/app/health
+############################################################
+GET http://localhost:3001/test/test-module/user/start
 ############################################################
 
 
