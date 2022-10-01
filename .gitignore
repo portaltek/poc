@@ -1,11 +1,16 @@
 **/node_modules/**
 **/dist/**
 **/.env/**
-**/*.env
-**/mongo-db-data/**
+**.env
+**/*.env.dev
+**/*.env.qat
+**/*.env.stg
+**/*.env.prd
+**/*-db-data/**
 **/coverage/**
-
+**/_notes/**
 
 **/docker-compose.yml
 **/mongo-init.js 
-nodejs/rest-api/rest-api-004/.env
+
+

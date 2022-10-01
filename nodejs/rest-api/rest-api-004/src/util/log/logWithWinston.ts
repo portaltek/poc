@@ -70,6 +70,6 @@ export const logWithWinston = winston.createLogger({
         logFile('app.log'),
         logFileDailyRotation('app-%DATE%.log'),
     ],
-    exceptionHandlers: [logFile('exception.log')],
-    rejectionHandlers: [logFile('rejections.log')],
+    // exceptionHandlers: [logFile('exception.log')],
+    // rejectionHandlers: [logFile('rejections.log')],
 })

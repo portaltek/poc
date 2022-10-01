@@ -1,12 +1,13 @@
 
-.node_modules
-.dist
-
+node_modules
+dist
+setup
 docs
 support
+
+.env
 .circleci
 .github
-
 .git
 .gitignore
 .editorconfig

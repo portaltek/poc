@@ -1,4 +1,3 @@
-# OPTIONAL. REMOVE IF YOU EXECUTE DIRECTLY
 cd repo
 
 ################################################
@@ -7,5 +6,6 @@ cd repo
 docker compose down;
 docker volume prune -f; 
 docker image prune -f; 
+
 
 docker compose up -d;

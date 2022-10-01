@@ -13,13 +13,13 @@ import { createTraceID } from '@/util/log/traceID'
 
 export function initMongoRepo() {
     const { MONGO_USERNAME, MONGO_PASSWORD, MONGO_PATH } = ENV
-    mongoose.connect(
-        `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_PATH}`
-    )
+    mongoose
+        .connect(`mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_PATH}`)
+        .then(() => log.info(`MongoDB Connected: ${MONGO_PATH}`))
 }
 
 export function initNoRepo() {
-    // console.log('initNoRepo')
+    // log.info('initNoRepo')
 }
 
 export default class App {

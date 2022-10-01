@@ -9,11 +9,7 @@ RUN ls -lht
 RUN npm install
 
 
-# FOR PRODUCTION OR SIMILAR
 CMD [ "npm", "start" ]
-
-# FOR DEBBUGING
-# CMD ["npm","run","hello"] 
 
 
 
