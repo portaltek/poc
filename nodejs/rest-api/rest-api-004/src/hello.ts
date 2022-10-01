@@ -1,8 +1,8 @@
-/* app.js */
-
+/* hello.ts */
+import 'dotenv/config'
 const express = require('express')
 
-const PORT = process.env.PORT || '8080'
+const PORT = process.env.SERVER_PORT || '8080'
 const app = express()
 
 app.get('/', (req: any, res: any) => {

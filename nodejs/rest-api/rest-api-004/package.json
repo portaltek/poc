@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "setup": "sh setup/local/setup.sh ",
+    "setup": "sh setup/local/setup.sh ${PWD}",
     "build": "rm -rf dist/* && tsc",
-    "install": "npm run build",
-    "test": "jest src/* --bail --watch --silent",
-    "watch": "npm install && tsc-watch --onSuccess \"node -r ./src/util/log/trace.js dist/index.js\"",
-    "hello": "npm install && node -r ./src/util/log/trace.js dist/hello.js",
-    "start": " node -r ./src/util/log/trace.js dist/index.js"
+    "install": "tsc ",
+    "jest": "jest src/* --bail --watch --silent",
+    "hello": "node -r ./src/util/log/trace.js dist/hello.js",
+    "node": "node -r ./src/util/log/trace.js dist/index.js",
+    "ts-node": "ts-node -r ./src/util/log/trace.js src/index.ts",
+    "compile": "tsc -p .",
+    "docker": "tsc -p .",
+    "watch": "npm run build && tsc-watch --onSuccess \"npm start\"",
+    "start": "npm run node"
   },
   "keywords": [],
   "author": "",
