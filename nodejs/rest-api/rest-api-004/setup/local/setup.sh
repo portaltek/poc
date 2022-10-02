@@ -16,24 +16,39 @@ echo " PROJECT_ENV        : ${PROJECT_ENV}"
 echo " PROJECT_ENV_FILE   : ${PROJECT_ENV_FILE}"
 echo "################################################################################"
 
-docker kill $(docker ps -q) # STOP/KILL ALL CONTAINERS
+# STOP ANY CONTAINER OR NODE SERVER RUNNING BEFORE START
+docker kill $(docker ps -q) && killall -9 node;
+
+# LOAD ENVS
+set -o allexport
+source $PROJECT_DIR/$PROJECT_ENV_FILE
+set +o allexport
+# printenv # FOR DEBBUGING ONLY
 
 
+echo "################################################################################"
+echo " CREATING DOCKER NETWORK: ${DOCKER_NETWORK}"
+echo "################################################################################"
+# docker network prune -f;
+docker network inspect ${DOCKER_NETWORK} >/dev/null 2>&1 || \
+    docker network create --driver bridge ${DOCKER_NETWORK};
+docker network ls; echo ""
 
-sh repo/setup.sh      
-# sh telemetry/setup.sh 
+
+# SETUP TIERS
+sh repo/setup-repo.sh      
+# sh monitor/setup-monitor.sh 
 
 
 if [[ -z "$2" ]]; then
     
+    echo "################################################################################"
+    echo " TIER ${SERVER_NAME}:${SERVER_ENV} "
+    echo "################################################################################"
+    
     npm install;
-    
-    echo "################################################################################"
-    echo " STARTING ENV:lol "
-    echo "################################################################################"
-    
     npm run start;
 
 else
-    sh my_rest_api/setup.sh;
+    sh app/setup-app.sh;
 fi
