@@ -1,6 +1,6 @@
 import { Server } from 'http'
-import express, { Application, Request, Response, NextFunction } from 'express'
-import mongoose from 'mongoose'
+import express, { Application } from 'express'
+
 import compression from 'compression'
 import cors from 'cors'
 import helmet from 'helmet'
@@ -10,17 +10,6 @@ import { log, restLog } from '@/util/log/logConfig'
 import Controller from '@/util/interfaces/controller.interface'
 import ErrorMiddleware from '@/util/middleware/error.middleware'
 import { createTraceID } from '@/util/log/traceID'
-
-export function initMongoRepo() {
-    const { MONGO_USER, MONGO_PASS, MONGO_PATH } = ENV
-    mongoose
-        .connect(`mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_PATH}`)
-        .then(() => log.info(`MongoDB Connected: ${MONGO_PATH}`))
-}
-
-export function initNoRepo() {
-    // log.info('initNoRepo')
-}
 
 export default class App {
     public express: Application
