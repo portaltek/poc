@@ -41,16 +41,12 @@ touch .env .env.sample
 # SERVER_ENV=lcl
 # SERVER_PORT=3000
 # MONGO_PATH=localhost:27017/my_db_000
-# MONGO_USERNAME=my_db_username
-# MONGO_PASSWORD=my_db_password
+# MONGO_USER=my_db_username
+# MONGO_PASS=my_db_password
 # JWT_SECRET=my_jwt_secret
 
 touch jest.config.js
-mkdir src src/util src/resource/ setup setup/local setup/local/mongo-db
+mkdir src src/util src/resource/ 
 
 
-cd setup/local/mongo-db
-docker-compose down # Just in case its running already.
-docker-compose up
 
-open  http://localhost:8081/mongo-express # TO CHECK MONGO-DB FROM WEB UI

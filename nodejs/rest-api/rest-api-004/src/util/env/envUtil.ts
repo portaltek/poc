@@ -4,8 +4,8 @@ import { cleanEnv, str, bool, port, num } from 'envalid'
 export function validateEnv(): void {
     cleanEnv(process.env, {
         MONGO_PATH: str(),
-        MONGO_USERNAME: str(),
-        MONGO_PASSWORD: str(),
+        MONGO_USER: str(),
+        MONGO_PASS: str(),
         SERVER_PORT: port({ default: 3000 }),
         SERVER_ENV: str({
             choices: ['mem', 'lol', 'dev', 'qat', 'stg', 'prd'],

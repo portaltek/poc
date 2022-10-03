@@ -1,4 +1,4 @@
-cd $PROJECT_DIR/setup/local/repo
+cd $PROJECT_DIR/setup/docker/repo
 
 echo "################################################################################"
 echo " TIER REPO:${SERVER_ENV}"

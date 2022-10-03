@@ -1,4 +1,4 @@
-cd setup/local/ 
+cd setup/docker/ 
 
 export PROJECT_DIR=$1;
 export PROJECT_ENV=$2;
