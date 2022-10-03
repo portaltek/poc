@@ -1,0 +1,53 @@
+################################################################################
+# TIER: REPO
+################################################################################
+version: "3.8"
+networks:
+    app_network:
+      name: ${DOCKER_NETWORK}
+      external: true            
+
+services:
+  mongo-db:
+    image: mongo:5.0
+    container_name: mongo-db
+    restart: unless-stopped
+    networks:
+      - app_network
+    ports:
+        - "${MONGO_DB_PORT}:27017"    
+    environment:
+        - MONGO_INITDB_DATABASE=${MONGO_DB_NAME}     
+        - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER} 
+        - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASS}            
+    volumes:
+    #   - ./mongo-db-data/db:/data/db
+    #   - ./data/dev.archive:/Databases/dev.archive
+    #   - ./data/production:/Databases/production
+      - ./mongo-db/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro          
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: unless-stopped
+    networks:
+      - app_network    
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo-db
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=false
+      - ME_CONFIG_SITE_BASEURL=/${MONGO_EXPRESS_URI_BASE}
+      # CONNECT mongo-express WITH ROOT USER
+      # - ME_CONFIG_MONGODB_AUTH_USERNAME=${MONGO_ROOT_USER} 
+      # - ME_CONFIG_MONGODB_AUTH_PASSWORD=${MONGO_ROOT_PASS}    
+      # - ME_CONFIG_MONGODB_AUTH_DATABASE=${MONGO_ROOT_DB_NAME} 
+
+      # CONNECT mongo-express WITH APP USER      
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=${MONGO_DB_USER}
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=${MONGO_DB_PASS}   
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=${MONGO_DB_NAME}
+
+    links:
+      - mongo-db
+    ports:
+      - "${MONGO_EXPRESS_PORT}:8081"
+

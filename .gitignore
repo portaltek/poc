@@ -10,7 +10,6 @@
 **/coverage/**
 **/_notes/**
 
-**/docker-compose.yml
 **/mongo-init.js 
 
 

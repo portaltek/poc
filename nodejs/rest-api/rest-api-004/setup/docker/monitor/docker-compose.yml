@@ -1,5 +1,11 @@
-# docker-compose.yml
+################################################################################
+# TIER: MONITOR
+################################################################################
 version: "3.8"
+volumes:
+  prometheus_data: {}
+  grafana_data: {}    
+  
 services:
   prometheus:
     image: prom/prometheus:latest
@@ -28,6 +34,4 @@ services:
     ports:
       - '3000:3000'      
 
-volumes:
-  prometheus_data: {}
-  grafana_data: {}      
+  

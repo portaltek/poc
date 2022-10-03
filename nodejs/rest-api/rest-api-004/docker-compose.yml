@@ -1,0 +1,24 @@
+################################################################################
+# TIER: APP
+################################################################################
+version: "3.8"
+networks:
+    app_network:
+      name: ${DOCKER_NETWORK}
+      external: true            
+      
+services:
+
+  my_rest_api:
+    image: ${DOCKER_IMG_NAME}:${DOCKER_IMG_TAG}
+    container_name: ${DOCKER_IMG_NAME}
+    restart: unless-stopped
+    env_file: ${PROJECT_ENV_FILE}
+    networks:
+      - app_network
+    # command: tail -F KEEP_CONTAINER_ALIVE_TO_DEBUG # DEBUG
+    ports:
+      - 3000:3000
+      - 3001:3001
+
+  

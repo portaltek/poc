@@ -12,7 +12,7 @@ docker rmi -f $DOCKER_IMG_NAME:$DOCKER_IMG_TAG;
 # docker images; 
 docker build . \
     -t $DOCKER_IMG_NAME:$DOCKER_IMG_TAG \
-    -f ./docker.dockerfile;    
+    -f ./Dockerfile;    
 docker images; 
 docker compose up -d; 
 docker ps -a; 
