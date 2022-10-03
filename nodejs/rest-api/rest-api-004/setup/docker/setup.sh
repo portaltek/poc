@@ -36,7 +36,7 @@ docker network ls; echo ""
 
 
 # SETUP TIERS
-sh repo/setup-repo.sh      
+sh repo-mongo/setup-repo-mongo.sh      
 # sh monitor/setup-monitor.sh 
 
 

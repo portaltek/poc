@@ -10,6 +10,7 @@
 **/coverage/**
 **/_notes/**
 
-**/mongo-init.js 
+**/init/*-init.js 
+**/init/*-init.sh
 
 

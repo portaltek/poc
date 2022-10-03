@@ -1,4 +1,4 @@
-cd $PROJECT_DIR/setup/docker/repo
+cd $PROJECT_DIR/setup/docker/repo-mongo
 
 echo "################################################################################"
 echo " TIER REPO:${SERVER_ENV}"
