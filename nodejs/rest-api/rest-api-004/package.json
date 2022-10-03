@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "setup": "sh setup/docker/setup.sh ${PWD}",
-    "setup:dev": "sh setup/docker/setup.sh ${PWD} dev",
+    "setup": "sh setup/docker/setup-docker.sh ${PWD}",
+    "setup:dev": "sh setup/docker/setup-docker.sh ${PWD} dev",
     "build": "rm -rf dist/* && tsc",
     "jest": "jest src/* --bail --watch --silent",
     "hello": "node -r ./src/util/log/trace.js dist/hello.js",

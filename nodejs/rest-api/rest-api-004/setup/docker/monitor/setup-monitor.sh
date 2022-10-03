@@ -1,11 +1,13 @@
-# OPTIONAL. REMOVE IF YOU EXECUTE DIRECTLY
-cd telemetry
+cd $PROJECT_DIR/setup/docker/monitor
 
-################################################
-# FOR DEEP CLEAN UP: REMOVE COMMENTS 
-################################################
-docker compose down;
-docker volume prune -f; 
-docker image prune -f; 
+echo "################################################################################"
+echo " setup-monitor.sh:${SERVER_ENV}"
+echo "################################################################################"
 
+if [ "${DOCKER_DELETE_TIER_MONITOR}" = true ]; then
+    echo "DELETING DOCKER TIER"
+    docker compose down;
+    docker volume prune -f; 
+    docker image prune -f; 
+fi
 docker compose up -d;

@@ -1,18 +1,20 @@
 cd $PROJECT_DIR
 
 echo "################################################################################"
-echo " TIER ${SERVER_NAME}:${SERVER_ENV} "
+echo " setup-app.sh:${SERVER_ENV} "
 echo "################################################################################"
 
-echo " CLEAN UP "
-docker compose down; docker volume prune -f; docker image prune -f; 
 
-echo " DOCKER IMAGE CREATION "
-docker rmi -f $DOCKER_IMG_NAME:$DOCKER_IMG_TAG;
-# docker images; 
-docker build . \
-    -t $DOCKER_IMG_NAME:$DOCKER_IMG_TAG \
-    -f ./Dockerfile;    
+if [ "${DOCKER_DELETE_TIER_APP}" = true ]; then
+    echo "DELETING DOCKER TIER"
+    docker compose down;
+    docker volume prune -f; docker image prune -f; 
+    docker rmi -f $DOCKER_IMG_NAME:$DOCKER_IMG_TAG;
+    docker build . \
+        -t $DOCKER_IMG_NAME:$DOCKER_IMG_TAG \
+        -f ./Dockerfile; 
+fi
+   
 docker images; 
 docker compose up -d; 
 docker ps -a; 
