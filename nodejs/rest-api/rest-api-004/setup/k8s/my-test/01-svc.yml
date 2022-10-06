@@ -1,0 +1,62 @@
+############################################################################
+# ServiceType: ClusterIP
+# Default option if not specified. Main goal is for internal networking Node2Node. 
+# eg: Nodes from backend to front end
+#
+# The ClusterIP/ServiceName are fixed, no ExternalIP to access this service type. 
+# 
+#
+# kubectl proxy --port=8080 # NOT_TESTED
+############################################################################
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: my-test
+# spec:
+#   type: ClusterIP # Default not necessary to specify.
+#   selector:
+#     role: my-test
+#   ports:
+#     - port: 8080          # ServicePort
+#       targetPort: 8080    # PodPort
+
+
+
+############################################################################
+# ServiceType: NodePort
+# Opens a port in the node. You can access this service type via:
+#
+# minikube -n test service test  # Open browser at MinikubeNode.InternalIP:Service.Port[2] aka Service.NodePort
+#
+############################################################################
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: my-test
+# spec:
+#   type: NodePort
+#   selector:
+#     role: my-test  
+#   ports:
+#   - port: 8080          # ServicePort
+#     targetPort: 8080    # PodPort
+#     nodePort: 30000     # Port In the NODE. You can access the service via this port
+    
+############################################################################
+# ServiceType: LoadBalancer 
+#
+# minikube tunnel;               # Open browser at Service.ExternalIP:Service.Port[0]
+# minikube -n test service test; # Open browser at MinikubeNode.InternalIP:Service.Port[1]
+#
+############################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-test
+spec:
+  type: LoadBalancer
+  selector:
+    role: my-test  
+  ports:
+  - port: 8080          # ServicePort.
+    targetPort: 8080    # If targetPort not specifed it will be same as ServicePort.

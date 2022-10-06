@@ -34,7 +34,7 @@ echo " CREATING DOCKER NETWORK: ${DOCKER_NETWORK}"
 echo "################################################################################"
 # docker network prune -f;
 docker network inspect ${DOCKER_NETWORK} >/dev/null 2>&1 || \
-    docker network create --driver bridge ${DOCKER_NETWORK};
+docker network create --driver bridge ${DOCKER_NETWORK};
 docker network ls; echo ""
 
 

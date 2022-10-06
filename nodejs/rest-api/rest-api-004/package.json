@@ -6,6 +6,7 @@
   "scripts": {
     "setup": "sh setup/docker/setup-docker.sh ${PWD}",
     "setup:dev": "sh setup/docker/setup-docker.sh ${PWD} dev",
+    "setup-k8s": "sh setup/k8s/setup-k8s.sh ${PWD} dev",
     "build": "rm -rf dist/* && tsc",
     "jest": "jest src/* --bail --watch --silent",
     "hello": "node -r ./src/util/log/trace.js dist/hello.js",
