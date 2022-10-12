@@ -7,10 +7,10 @@ kubectl get po  -n ingress-nginx;       # Should display 3 pods.
 kubectl get svc -n ingress-nginx;       # Should display 2 services.
 kubectl api-resources | grep ingress    # Should display 2 kinds resources.
 minikube ip -p ingress-cluster;         # Should display node IP.
-sudo vim /etc/hosts                     # Update host IP to ingress Hosts
+sudo code /etc/hosts                    # Update host IP to ingress Hosts
 
 ############################################################################
-export my_ns=my-ingress
+export my_ns=my-mongo
 kubectl delete ns $my_ns; kubectl create ns $my_ns; 
 kubectl config set-context --current --namespace=$my_ns
 kubectl get ns; kubectl config view --minify | grep namespace:
@@ -19,7 +19,7 @@ kubectl apply -f 01-svc2.yml ;
 kubectl apply -f 02-ing.yml ; sleep 5;
 
 
-
+kubectl api-resources | grep secret 
 
 
 

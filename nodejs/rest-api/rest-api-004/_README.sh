@@ -2,6 +2,10 @@
 ################################################################################################
 # SETUP FROM SCRATCH
 ################################################################################################
+brew install minikube hyperkit docker
+minikube start --vm=true        -p ingress-cluster;
+minikube addons enable ingress  -p ingress-cluster;
+
 
 # DEPENDENCIES
 npm init -y

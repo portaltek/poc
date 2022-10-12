@@ -1,0 +1,49 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: my-mongo-svc
+spec:
+  selector:
+    app: my-mongo
+  ports:
+    - port: 9010 #
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-mongo
+  labels:
+    role: my-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: my-mongo
+
+  template:
+    metadata:
+      labels:
+        role: my-mongo
+
+    spec:
+      containers:
+      - name: my-mongo
+        image: mongo
+        args: ["--dbpath","/data/db"]
+        env:
+          # - name: MONGO_INITDB_DATABASE     
+          #   value: "admin"
+          - name: MONGO_INITDB_ROOT_USERNAME     
+            value: "admin"   
+          - name: MONGO_INITDB_ROOT_PASSWORD     
+            value: "admin"                       
+
+
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "200m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"    
