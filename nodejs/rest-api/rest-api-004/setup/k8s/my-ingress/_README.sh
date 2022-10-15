@@ -1,7 +1,7 @@
 
-minikube stop; 
-minikube start --vm=true        -p ingress-cluster; #minikube start --driver=hyperkit;
-minikube addons enable ingress  -p ingress-cluster;
+minikube stop; cluster_name=ingress-cluster
+minikube start --vm=true        -p $cluster_name; #minikube start --driver=hyperkit;
+minikube addons enable ingress  -p $cluster_name;
 
 kubectl get po  -n ingress-nginx;       # Should display 3 pods.
 kubectl get svc -n ingress-nginx;       # Should display 2 services.
