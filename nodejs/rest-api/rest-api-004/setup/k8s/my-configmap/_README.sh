@@ -23,6 +23,10 @@ k create secret generic my-secret \
 k create secret generic my-secret2 \
     --from-literal=CATALINA_BASE=${CATALINA_BASE};
 k create secret generic my-secret3 \
-    --from-file=MY_FILE=secret.yml;
+    --from-file=MY_FILE=secret1.yml;
+k create secret generic my-secret4 \
+    --from-file=secret1.yml \
+    --from-file=secret2.yml ;
 
-k get secrets;
+k get secret my-secret4 -o yaml;
+k describe secret my-secret4 ;
