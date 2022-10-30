@@ -2,7 +2,7 @@ import Img1 from "../../assets/imgs/img1.jpeg";
 import Img2 from "../../assets/imgs/img2.jpeg";
 import Img3 from "../../assets/imgs/img3.jpeg";
 import Img4 from "../../assets/imgs/img4.jpeg";
-import Img5 from "../../assets/imgs/img5.avif";
+import Img5 from "../../assets/imgs/img5.jpg";
 
 export const images = [
   {
