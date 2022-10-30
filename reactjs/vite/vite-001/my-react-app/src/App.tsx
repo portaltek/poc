@@ -4,7 +4,9 @@ import Carousel from "./components/carousel/Carousel";
 function App() {
   return (
     <div className="App">
-      <Carousel />
+      <div className="container">
+        <Carousel initIndex={-1} imagesDisplayed={1} />
+      </div>
     </div>
   );
 }

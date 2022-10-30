@@ -3,26 +3,27 @@ import Img2 from "../../assets/imgs/img2.jpeg";
 import Img3 from "../../assets/imgs/img3.jpeg";
 import Img4 from "../../assets/imgs/img4.jpeg";
 import Img5 from "../../assets/imgs/img5.jpg";
+import { CarouselImg } from "./Carousel.interfaces";
 
-export const images = [
+export const images: CarouselImg[] = [
   {
-    title: "Img1",
-    img: Img1,
+    alt: "Img1",
+    src: Img1,
   },
   {
-    title: "Img2",
-    img: Img2,
+    alt: "Img2",
+    src: Img2,
   },
   {
-    title: "Img3",
-    img: Img3,
+    alt: "Img3",
+    src: Img3,
   },
   {
-    title: "Img4",
-    img: Img4,
+    alt: "Img4",
+    src: Img4,
   },
   {
-    title: "Img5",
-    img: Img5,
+    alt: "Img5",
+    src: Img5,
   },
 ];
