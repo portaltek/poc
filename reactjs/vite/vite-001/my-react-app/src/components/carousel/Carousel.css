@@ -6,7 +6,7 @@
 }
 
 .carousel-inner {
-  background-color: none;
+  background-color: gainsboro;
   height: 100%;
   width: 100%;
   display: flex;
@@ -62,12 +62,10 @@
 
 
 .carousel-empty {
-  height: 100%;
-  width: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
+  height: 10%;
+  width: 20%;
+  text-align: center;
+  
   background-color: rgb(255, 0, 0);
 }
 

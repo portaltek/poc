@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Carousel.css";
-import { images } from "./Carousel.data";
+import { images } from "./__TEST__/Carousel.spec.data";
 import { CarouselProps } from "./Carousel.interfaces";
 
 export default function Carousel(props: CarouselProps) {
@@ -39,7 +39,9 @@ export default function Carousel(props: CarouselProps) {
           );
         })}
 
-        {imgs.length == 0 && <div className="carousel-empty">NO IMGS</div>}
+        {imgs.length == 0 && (
+          <div className="carousel-empty">Carousel is empty</div>
+        )}
       </div>
     </div>
   );
@@ -48,7 +50,7 @@ export default function Carousel(props: CarouselProps) {
 function validateProps({
   initIndex = 0,
   imagesDisplayed = 1,
-  imgs = images,
+  imgs = [],
 }: CarouselProps) {
   imagesDisplayed = Math.min(imgs.length, imagesDisplayed);
   initIndex = Math.max(initIndex, 0);
