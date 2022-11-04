@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-test
+  labels:
+    role: my-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: my-test
+      tier: web
+  template:
+    metadata:
+      labels:
+        role: my-test
+        tier: web
+    spec:
+      containers:
+      - name: my-test
+        image: gcr.io/google-samples/hello-app:2.0
+        imagePullPolicy: IfNotPresent        
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "200m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
