@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-svc
+spec:
+  type: ClusterIP # LoadBalancer, NodePort, ClusterIP
+  selector:
+    role: my-app
+  ports:
+  - port: 3000          # ServicePort.
+    targetPort: 3000    # If targetPort not specifed it will be same as ServicePort.
+    # nodePort: 30000
