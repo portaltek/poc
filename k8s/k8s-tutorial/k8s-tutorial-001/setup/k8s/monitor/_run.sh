@@ -1,10 +1,7 @@
-minikube stop; minikube delete --all ;
-minikube start --driver=docker; minikube addons enable ingress;
-minikube start --driver=hyperkit; minikube addons enable ingress;
-cd setup/k8s;
+cd setup/k8s/monitor;
 
 # For local
-export my_ns=my-app; 
+export my_ns=my-monitor; 
 kubectl delete ns $my_ns; kubectl create ns $my_ns; 
 kubectl config set-context --current --namespace=$my_ns;
 kubectl get ns; kubectl config view --minify | grep namespace:
