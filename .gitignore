@@ -1,17 +1,19 @@
 **/node_modules/**
 **/dist/**
-**/.env/**
-**.env
+
 **.secret
 **.secrets
+**/.env/**
+**.env
 **/*.env.dev
 **/*.env.qat
 **/*.env.stg
 **/*.env.prd
+**/conf/*/k8s.yml
 **/*-db-data/**
 **/coverage/**
 **/_notes/**
-
+**/out.*
 **/init/*-init.js 
 **/init/*-init.sh
 

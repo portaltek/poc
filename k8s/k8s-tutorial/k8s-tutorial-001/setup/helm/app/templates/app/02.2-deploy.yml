@@ -6,6 +6,8 @@ metadata:
     tag: {{.Values.app.deploy.tag}}
 spec:
   replicas: {{.Values.app.deploy.replicas}}
+  strategy:
+    type: {{.Values.app.deploy.strategy.type}}
   selector:
     matchLabels:
       tag: {{.Values.app.deploy.tag}}
@@ -19,8 +21,15 @@ spec:
           image: {{.Values.app.deploy.container.image}}
           imagePullPolicy: IfNotPresent
           env:
-            - name: ENV
-              value: {{.Values.env}}
+            - name: APP_VERSION
+              value: 2022-11-20.1
+            {{- range $k, $v := .Values.app.env_vars }}
+            - name: {{ quote $k }}    
+              value: {{ quote $v }}           
+            {{- end }}                
+          # envFrom:
+          #   - configMapRef:
+          #       name: my-app-cm
           ports:
             - containerPort: 3000
           resources:

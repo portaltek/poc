@@ -7,28 +7,22 @@
     kubectl create ns my-helm;
     kubectl config set-context --current --namespace=my-helm
 
-    helm template setup/helm/app \
-        --values config/$ENV/.val.yml > _notes/out.yml;
+    helm template setup/helm/app --values conf/$ENV/k8s.yml > _notes/out.yml;
 
 # open my-app.com
 
 # open http://192.168.64.8:30000/
 
     helm uninstall my-helm; k.ll;
-    helm install my-helm setup/helm/app --values conf/$ENV/.val.yml;
-    helm upgrade my-helm setup/helm/app --values conf/$ENV/.val.yml;
-
-    kubectl describe pod/prometheus-8464f58fd8-bb9xl
-
-
-    quay.io/oauth2-proxy/oauth2-proxy:v7.3.0
-    kubectl create secret docker-registry regcred \
-    --docker-server=<your-registry-server> \
-    --docker-username=<your-name> \
-    --docker-password=<your-pword> \
-    --docker-email=<your-email>
-    ;
-
-    docker pull prom/prometheus:v2.40.2;
-
-    docker pull hello-world:nanoserver-ltsc2022
+    helm install my-helm setup/helm/app --values conf/$ENV/k8s.yml;
+    helm upgrade my-helm setup/helm/app --values conf/$ENV/k8s.yml;
+    k cluster-info
+    k get cm my-app-cm
+    k describe cm my-app-cm
+    k scale deploy/my-app --replicas=3; k.ls;
+    k autoscale deploy/my-app --min=1 --max=2 --cpu-percent=80
+    k rollout pause deploy/my-app
+    k rollout status deploy/my-app
+    k rollout undo deploy/my-app
+    k rollout history deploy/my-app --revision=2
+    {{ toYaml .Values.app.deploy.env_vars | indent 2 }}
