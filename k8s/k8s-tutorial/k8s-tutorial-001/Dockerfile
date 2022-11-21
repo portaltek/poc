@@ -1,4 +1,4 @@
-FROM my_app_base
+FROM my_app_base:v1.0.0
 
 COPY src /app/src
 RUN npm run build
