@@ -26,3 +26,6 @@
     k rollout undo deploy/my-app
     k rollout history deploy/my-app --revision=2
     {{ toYaml .Values.app.deploy.env_vars | indent 2 }}
+
+    k port-forward prometheus-deployment-75cff7d89f-5lvrw 8080:9090 -n monitoring
+    k port-forward prometheus-deployment-75cff7d89f-5lvrw 8080:9090
